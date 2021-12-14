@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Adverse Events</title>
+</head>
+<body>
+<h1>Food Adverse Events Finder</h1>
+<h3> See if the food is causing your troubles!</h3>
+<img src="/static/foodImage.jpeg" width="280px" height="150px"/>
+<h4>Type in the name of the food you recently had
+     and see which reaction/outcome could be correlated by
+     seeing how many others had the similar issues.</h4>
+
+
+
+<form action="/response" method="get">
+    <lable for="food">Please enter the name of the food:</lable>
+    <input type="text" id="food" name="food" /><br/>
+    {%if askForName %}
+    <h4>{{askForName|safe}}</h4><br/>
+    {% endif %}
+
+    <lable for="limit">How many results?(optional): </lable>
+    <input type="text" id="limit" name="limit" /><br />
+    <p>(5 results is recommended as it shows the Top 5 results
+        by the number of counts)</p><br />
+
+    <input type="checkbox" name = "reactions" value="reaction" id="reaction"/>
+    <label for="reaction">Reactions Result</label>
+    <input type="checkbox" name = "outcomes" value="outcome" id="outcome"/>
+    <label for="outcome">Outcomes Result</label><br /><br/>
+    <input type="submit" value="Go" name="gobtn">
+</form>
+
+
+
+{% if result %}
+<h4>------Reactions Result Shown------</h4>
+<div>{{result|safe}}</div><br/>
+{%if result != "Sorry. no reaction results. Please check off the reaction"%}
+<p><a href={{reactionLink|safe}}>Learn more about the first result!</a></p>
+{% endif %}
+{% endif %}
+
+
+{% if secResult %}
+<h4>------Outcomes Result Shown-----</h4>
+<div>{{secResult|safe}}</div><br/>
+{% endif %}
+</body>
+
+
+</html>
