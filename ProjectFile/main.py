@@ -63,7 +63,7 @@ def foodSearch(countType,term,limitNum):
         if len(food["results"]) >= limitNum:
             for num in range(len(food["results"])):
                 foodlist.append(str(num+1) + ") " + (food["results"][num]["term"]).lower() + " - " +
-                    str(food["results"][num]["count"]) + " results")
+                    str(food["results"][num]["count"]) + " counts")
         listString = ""
         for result in foodlist:
             listString = listString + result + "<br>"
